@@ -20,7 +20,6 @@
         const content = document.getElementById('content');
 
         btn.addEventListener('click', function () {
-            // 音声認識をスタート
             if (!isRecognizing) {
                 console.log("Speech recognition start");
                 content.innerHTML += '<div>' + "-----Speech recognition start-----" + '</div>';
@@ -28,15 +27,11 @@
             }
         });
 
-        //---------------追記---------------//
-        //音声自動文字起こし機能
         speech.onresult = function (e) {
-            if (e.results[0].isFinal) {
-                var autotext = e.results[0][0].transcript
-                console.log(e);
-                console.log("Speech recognition result: ", autotext);
-                content.innerHTML += '<div>' + autotext + '</div>';
-            }
+            var autotext = e.results[0][0].transcript
+            console.log(e);
+            console.log("Speech recognition result: ", autotext);
+            content.innerHTML += '<div>' + autotext + '</div>';
         }
 
         speech.onspeechend = () => {
@@ -57,7 +52,6 @@
             console.error("Speech recognition error:", event.error);
             content.innerHTML += '<div>' + "-----Speech recognition error: " + event.error + '-----' + '</div>';
         };
-        //--------------------------------//
 
     </script>
 
