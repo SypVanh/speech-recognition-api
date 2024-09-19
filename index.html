@@ -28,12 +28,10 @@
         });
 
         speech.onresult = function (e) {
-            if (e.results[0].isFinal) {
-                var autotext = e.results[0][0].transcript
-                console.log(e);
-                console.log("Speech recognition result: ", autotext);
-                content.innerHTML += '<div>' + autotext + '</div>';
-            }
+            var autotext = e.results[0][0].transcript
+            console.log(e);
+            console.log("Speech recognition result: ", autotext);
+            content.innerHTML += '<div>' + autotext + '</div>';
         }
 
         speech.onspeechend = () => {
@@ -54,7 +52,7 @@
             console.error("Speech recognition error:", event.error);
             content.innerHTML += '<div>' + "-----Speech recognition error: " + event.error + '-----' + '</div>';
         };
-        
+
     </script>
 
     <body>
